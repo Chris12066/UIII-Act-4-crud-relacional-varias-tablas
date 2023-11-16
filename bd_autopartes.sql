@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2023 a las 05:01:46
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Tiempo de generación: 16-11-2023 a las 20:37:09
+-- Versión del servidor: 10.1.28-MariaDB
+-- Versión de PHP: 5.6.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -32,7 +33,7 @@ CREATE TABLE `carros_vendidos` (
   `id_carro` bigint(20) UNSIGNED NOT NULL,
   `cantidad` bigint(20) UNSIGNED NOT NULL,
   `id_venta` bigint(20) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `carros_vendidos`
@@ -43,7 +44,7 @@ INSERT INTO `carros_vendidos` (`id`, `id_carro`, `cantidad`, `id_venta`) VALUES
 (5, 1, 1, 7),
 (6, 1, 1, 8),
 (7, 1, 1, 9),
-(8, 4, 1, 9);
+(9, 1, 1, 11);
 
 -- --------------------------------------------------------
 
@@ -60,16 +61,18 @@ CREATE TABLE `tbl_carro` (
   `color` varchar(50) NOT NULL,
   `tipo` varchar(50) NOT NULL,
   `cilindros` varchar(50) NOT NULL,
-  `precio` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `precio` decimal(10,2) NOT NULL,
+  `cantidad` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tbl_carro`
 --
 
-INSERT INTO `tbl_carro` (`id`, `id_carro`, `marca`, `modelo`, `anio`, `color`, `tipo`, `cilindros`, `precio`) VALUES
-(1, 1, 'Nissan', 'Silvia s13', '1990', 'Menta', 'Coupe', '4', '40000.00'),
-(4, 2, 'Toyota', 'AE86', '1990', 'Blanco', 'Coupe', '4', '30000.00');
+INSERT INTO `tbl_carro` (`id`, `id_carro`, `marca`, `modelo`, `anio`, `color`, `tipo`, `cilindros`, `precio`, `cantidad`) VALUES
+(1, 1, 'Nissan', 'Silvia s13', '1990', 'Menta', 'Coupe', '4', '40000.00', 100),
+(4, 2, 'Toyota', 'AE86', '1990', 'Blanco', 'Coupe', '4', '30000.00', 100),
+(6, 3, '3', 'Mazda', '1990', 'Amarillo', 'Coupe', '2', '90000.00', 100);
 
 -- --------------------------------------------------------
 
@@ -81,7 +84,7 @@ CREATE TABLE `ventas` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fecha` datetime NOT NULL,
   `total` decimal(7,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `ventas`
@@ -90,7 +93,8 @@ CREATE TABLE `ventas` (
 INSERT INTO `ventas` (`id`, `fecha`, `total`) VALUES
 (4, '2023-11-16 03:56:27', '40000.00'),
 (5, '2023-11-16 03:58:58', '40000.00'),
-(9, '2023-11-16 04:52:14', '70000.00');
+(10, '2023-11-16 20:27:58', '0.00'),
+(11, '2023-11-16 20:31:15', '40000.00');
 
 --
 -- Índices para tablas volcadas
@@ -124,19 +128,19 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `carros_vendidos`
 --
 ALTER TABLE `carros_vendidos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_carro`
 --
 ALTER TABLE `tbl_carro`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
