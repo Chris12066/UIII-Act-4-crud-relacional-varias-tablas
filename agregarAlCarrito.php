@@ -13,8 +13,8 @@ if (!$carro) {
     header("Location: ./vender.php?status=4");
     exit;
 }
-# Si no hay color...
-if ($carro->color < 1) {
+# Si no hay cantidad...
+if ($carro->cantidad < 1) {
     header("Location: ./vender.php?status=5");
     exit;
 }
@@ -37,7 +37,7 @@ if ($indice === false) {
     # Pero espera, tal vez ya no haya
     $cantidadExistente = $_SESSION["carrito"][$indice]->cantidad;
     # si al sumarle uno supera lo que existe, no se agrega
-    if ($cantidadExistente + 1 > $carro->color) {
+    if ($cantidadExistente + 1 > $carro->cantidad) {
         header("Location: ./vender.php?status=5");
         exit;
     }
